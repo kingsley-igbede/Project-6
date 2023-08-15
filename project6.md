@@ -42,6 +42,18 @@
 
 ![Disk 3 Partition](./images/disk-partition3b.jpg)
 
+5. Use `lsblk` utility to view the newly configured partition on each of the 3 disks.
+
+![Partition Status](./images/partition-status.jpg)
+
+6. Install lvm2 package using `sudo yum install lvm2` . Run `sudo lvmdiskscan` command to check for available partitions.
+
+![LVM2 Package Install Status](./images/lvm2-package-status.jpg)
+
+`sudo lvmdiskscan`
+
+![Available Partitions](./images/partition-scan.jpg)
+
 
 
 
