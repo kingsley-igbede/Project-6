@@ -32,7 +32,15 @@
 
 `sudo gdisk /dev/nvme2n1`
 
+![Disk 2 Partition](./images/disk-partition2a.jpg)
 
+![Disk 2 Partition](./images/disk-partition2b.jpg)
+
+`sudo gdisk /dev/nvme3n1`
+
+![Disk 3 Partition](./images/disk-partition3a.jpg)
+
+![Disk 3 Partition](./images/disk-partition3b.jpg)
 
 
 
