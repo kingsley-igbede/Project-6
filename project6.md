@@ -78,6 +78,39 @@
 
 ![Volume Group Status](./images/volume-group-status.jpg)
 
+11. Use `lvcreate` utility to create 2 logical volumes. apps-lv (Use half of the PV size), and logs-lv Use the remaining space of the PV size. NOTE: apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs
+
+`sudo lvcreate -L 14G -n apps-lv webdata-vg`
+
+`sudo lvcreate -L 14G -n logs-lv webdata-vg`
+
+![Logical Volumes](./images/logical-volumes.jpg)
+
+12. Verify that your Logical Volume has been created successfully by running 
+
+`sudo lvs`
+
+![Logical Volumes Status](./images/logical-volumes-status.jpg)
+
+13. Verify the entire setup
+
+`sudo vgdisplay -v #view complete setup - VG, PV, and LV`
+
+![Complete Setup Status1](./images/complete-setup1.jpg)
+
+![Complete Setup Status2](./images/complete-setup2.jpg)
+
+![Complete Setup Status3](./images/complete-setup3.jpg)
+
+`sudo lsblk`
+
+![lsblk status](./images/lsblk%20status.jpg)
+
+
+
+
+
+
 
 
 
