@@ -54,6 +54,30 @@
 
 ![Available Partitions](./images/partition-scan.jpg)
 
+7. Use `pvcreate` utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM
+
+`sudo pvcreate /dev/nvme1n1p1 /dev/nvme2n1p1 /dev/nvme3n1p1`
+
+![Physical Volumes](./images/physical-volumes.jpg)
+
+8. Verify that your Physical volume has been created successfully by running  
+
+`sudo pvs`
+
+![Physical Volumes Status](./images/physical-volumes-status.jpg)
+
+9. Use `vgcreate` utility to add all 3 PVs to a volume group (VG). Name the VG webdata-vg
+
+`sudo vgcreate webdata-vg /dev/nvme1n1p1 /dev/nvme2n1p1 /dev/nvme3n1p1`
+
+![Volume Group](./images/volume-group.jpg)
+
+10. Verify that your VG has been created successfully by running sudo vgs
+
+`sudo vgs`
+
+![Volume Group Status](./images/volume-group-status.jpg)
+
 
 
 
