@@ -106,6 +106,51 @@
 
 ![lsblk status](./images/lsblk%20status.jpg)
 
+14. Use mkfs.ext4 to format the logical volumes with ext4 filesystem
+
+`sudo mkfs.ext4 /dev/webdata-vg/apps-lv`
+
+![filesystem apps-lv](./images/filesystem-apps-lv.jpg)
+
+`sudo mkfs.ext4 /dev/webdata-vg/logs-lv`
+
+![filesystem logs-lv](./images/filesystem-logs-lv.jpg)
+
+15. Create /var/www/html directory to store website files
+
+`sudo mkdir -p /var/www/html`
+
+16. Create /home/recovery/logs to store backup of log data
+
+`sudo mkdir -p /home/recovery/logs`
+
+17. Mount /var/www/html on apps-lv logical volume
+
+`sudo mount /dev/webdata-vg/apps-lv /var/www/html/`
+
+![Mount Status](./images/mount-status.jpg)
+
+18. Use `rsync` utility to backup all the files in the log directory /var/log into /home/recovery/logs (This is required before mounting the file system)
+
+`sudo rsync -av /var/log/. /home/recovery/logs/`
+
+19. Mount /var/log on logs-lv logical volume. (Note that all the existing data on /var/log will be deleted. That is why step 18 above is very important)
+
+`sudo mount /dev/webdata-vg/logs-lv /var/log`
+
+`sudo ls -l /var/log`
+
+![Logs-lv Mount Status](./images/logs-lv-mount-status.jpg)
+
+20. Restore log files back into /var/log directory
+
+`sudo rsync -av /home/recovery/logs/log/. /var/log`
+
+
+
+
+
+
 
 
 
