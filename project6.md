@@ -177,14 +177,69 @@
 
 ### Step 2 - Prepare the Database Server
 
+1.  Launch an EC2 instance that will serve as “Database Server”. Create 3 volumes in the same AZ as your Project6-DBserver EC2, each of 10 GB
 
+![Database Instance](./images/db-instance.jpg)
 
+![DB Volumes](./images/db-volumes.jpg)
 
+2. Attach all three volumes one by one to Project6-DBserver EC2 instance
 
+3. Use `lsblk` command to inspect what block devices are attached to the server.
 
+![DB Volumes Attached](./images/db-volumes-attached.jpg)
 
+4.  Use `df -h` command to see all mounts and free space on your server
 
+5. Use gdisk utility to create a single partition on each of the 3 disks
 
+`sudo gdisk /dev/nvme1n1`
+
+5. Use `lsblk` utility to view the newly configured partition on each of the 3 disks.
+
+![DB Partition Status](./images/db-partition-status.jpg)
+
+6. Install lvm2 package using `sudo yum install lvm2` . Run `sudo lvmdiskscan` command to check for available partitions.
+
+![DB LVM2 Package Install Status](./images/DB-lvm2-status.jpg)
+
+`sudo lvmdiskscan`
+
+![DB LVM Disk Status](./images/db-lvm-disk-status.jpg)
+
+7. Use `pvcreate` utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM
+
+`sudo pvcreate /dev/nvme1n1p1 /dev/nvme2n1p1 /dev/nvme3n1p1`
+
+![Db Physical Volumes](./images/db-physical-volumes.jpg)
+
+8. Verify that your Physical volume has been created successfully by running  
+
+`sudo pvs`
+
+![Db PVS Status](./images/db-physical-volume-status.jpg)
+
+9. Use `vgcreate` utility to add all 3 PVs to a volume group (VG). Name the VG database-vg
+
+`sudo vgcreate database-vg /dev/nvme1n1p1 /dev/nvme2n1p1 /dev/nvme3n1p1`
+
+![DB Volume Group](./images/db-volume-group.jpg)
+
+10. Verify that your VG has been created successfully by running sudo vgs
+
+`sudo vgs`
+
+![DB Volume Group Status](./images/db-volume-group-status.jpg)
+
+11. Use `lvcreate` utility to create a db-lv logical volume. 
+
+`sudo lvcreate -n db-lv -L 20G database-vg`
+
+12. Verify that your Logical Volume has been created successfully by running
+
+`sudo lvs`
+
+![DB Logical Volumes Status](./images/db-logical-volume-status.jpg)
 
 
 
