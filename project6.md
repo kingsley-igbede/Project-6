@@ -296,6 +296,61 @@
 ![DB Verify Status](./images/db-verify-setup.jpg)
 
 
+### Step 3 — Install WordPress on Web Server EC2
+
+1. Update the repository
+
+`sudo yum update -y`
+
+2. Install wget, Apache and it’s dependencies
+
+`sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json`
+
+![Apache and Dependencies](./images/apache-dependencies.jpg)
+
+3. Start Apache
+
+`sudo systemctl enable httpd`
+
+`sudo systemctl start httpd`
+
+![Start Apache Status](./images/start-apache-status.jpg)
+
+4. To install PHP and it’s depemdencies
+
+`sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`
+
+![EPEL Status](./images/epel-status.jpg)
+
+`sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm`
+
+![Remirepo Status](./images/remirepo-status.jpg)
+
+`sudo yum module list php`
+
+![Module List PHP](./images/module-list-php.jpg)
+
+`sudo yum module reset php`
+
+`sudo yum module enable php:remi-7.4`
+
+![Module Reset and Enable PHP](./images/module-reset-php.jpg)
+
+`sudo yum install php php-opcache php-gd php-curl php-mysqlnd`
+
+`sudo systemctl start php-fpm`
+
+`sudo systemctl enable php-fpm`
+
+`sudo setsebool -P httpd_execmem 1`
+
+`sudo systemctl status php-fpm`
+
+![PHP FPM Status](./images/php-fpm-status.jpg)
+
+
+
+
 
 
 
