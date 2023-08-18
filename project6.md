@@ -241,6 +241,64 @@
 
 ![DB Logical Volumes Status](./images/db-logical-volume-status.jpg)
 
+13. Verify the entire setup
+
+`sudo vgdisplay -v #view complete setup - VG, PV, and LV`
+
+![DB Complete Setup Status1](./images/db-complete-setup1.jpg)
+
+![DB Complete Setup Status2](./images/db-complete-setup2.jpg)
+
+`sudo lsblk`
+
+![DB lsblk status](./images/db-lsblk-status.jpg)
+
+14. Use mkfs.ext4 to format the logical volume with ext4 filesystem
+
+`sudo mkfs.ext4 /dev/database-vg/db-lv`
+
+![filesystem db-lv](./images/db-filesystem.jpg)
+
+15. Create /db directory 
+
+`sudo mkdir /db`
+
+16. Mount /db on db-lv logical volume
+
+`sudo mount /dev/database-vg/db-lv /db`
+
+17. Check status using the code
+
+`df -h`
+
+![DB Mount Status](./images/db-mount-status.jpg)
+
+18. Update /etc/fstab file so that the mount configuration will persist after restart of the server.
+
+*The UUID of the device will be used to update the /etc/fstab file*
+
+`sudo blkid`
+
+![DB BLKID Status](./images/db-blkid-status.jpg)
+
+`sudo vi /etc/fstab`
+
+![DB FSTAB Edit](./images/db-fstab-edit.jpg)
+
+19. Test the configuration and reload the daemon
+
+`sudo mount -a`
+
+`sudo systemctl daemon-reload`
+
+20. Verify your setup by running `df -h`, output must look like this:
+
+![DB Verify Status](./images/db-verify-setup.jpg)
+
+
+
+
+
 
 
 
