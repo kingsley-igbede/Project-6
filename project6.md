@@ -332,11 +332,15 @@
 
 `sudo yum module reset php`
 
-`sudo yum module enable php:remi-7.4`
+![Module Reset PHP](./images/module-reset-php.jpg)
 
-![Module Reset and Enable PHP](./images/module-reset-php.jpg)
+`sudo yum module enable php:remi-8.1`
+
+![Module Enable PHP](./images/module-enable-php.jpg)
 
 `sudo yum install php php-opcache php-gd php-curl php-mysqlnd`
+
+![PHP Modules](./images/php-modules.jpg)
 
 `sudo systemctl start php-fpm`
 
@@ -347,6 +351,12 @@
 `sudo systemctl status php-fpm`
 
 ![PHP FPM Status](./images/php-fpm-status.jpg)
+
+5. Restart Apache
+
+`sudo systemctl restart httpd`
+
+
 
 
 
