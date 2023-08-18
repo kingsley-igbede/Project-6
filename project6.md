@@ -144,7 +144,40 @@
 
 20. Restore log files back into /var/log directory
 
-`sudo rsync -av /home/recovery/logs/log/. /var/log`
+`sudo rsync -av /home/recovery/logs/ /var/log`
+
+*temporary mount update*
+
+![Temp Mount Status](./images/temp-mount-status.jpg)
+
+21. Update /etc/fstab file so that the mount configuration will persist after restart of the server.
+
+*The UUID of the device will be used to update the /etc/fstab file*
+
+`sudo blkid`
+
+![BLKID Status](./images/sudo-blkid-status.jpg)
+
+`sudo vi /etc/fstab`
+
+*Update /etc/fstab in this format using your own UUID and rememeber to remove the leading and ending quotes*
+
+![FSTAB Edit](./images/fstab-edits.jpg)
+
+22. Test the configuration and reload the daemon
+
+`sudo mount -a`
+
+`sudo systemctl daemon-reload`
+
+23. Verify your setup by running `df -h`, output must look like this:
+
+![Verify Status](./images/verify-status.jpg)
+
+
+### Step 2 - Prepare the Database Server
+
+
 
 
 
