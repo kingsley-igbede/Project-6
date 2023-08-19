@@ -342,6 +342,10 @@
 
 ![PHP Modules](./images/php-modules.jpg)
 
+`php -v`
+
+![PHP Version](./images/php-version.jpg)
+
 `sudo systemctl start php-fpm`
 
 `sudo systemctl enable php-fpm`
@@ -356,6 +360,36 @@
 
 `sudo systemctl restart httpd`
 
+6. Download wordpress and copy wordpress to var/www/html
+
+`mkdir wordpress`
+
+`cd wordpress`
+
+`sudo wget http://wordpress.org/latest.tar.gz`
+
+![Wordpress Download](./images/wordpress-download.jpg)
+
+*Extract Wordpress*
+`sudo tar xzvf latest.tar.gz`
+
+![Wordpress Folder](./images/extra-wordpress-folder.jpg)
+
+`sudo rm -rf latest.tar.gz`
+
+`cp wordpress/wp-config-sample.php wordpress/wp-config.php`
+
+`ls -l`
+
+`cd wordpress`
+
+`ls -l`
+
+![Wordpress Folder Content](./images/wordpress-content.jpg)
+
+`cp -R wordpress/. /var/www/html/`
+
+![html status](./images/html-status.jpg)
 
 
 
