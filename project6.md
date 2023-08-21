@@ -334,7 +334,7 @@
 
 ![Module Reset PHP](./images/module-reset-php.jpg)
 
-`sudo yum module enable php:remi-8.1`
+`sudo yum module enable php:remi-7.4`
 
 ![Module Enable PHP](./images/module-enable-php.jpg)
 
@@ -447,7 +447,50 @@
 
 ![dbserver security group](./images/dbserver-security-group.jpg)
 
+1. Install MySQL client and test that you can connect from your Web Server to your DB server by using mysql-client
 
+`sudo yum install mysql`
+
+`sudo mysql -u myuser -p -h 172.31.45.110`
+
+![webserver mysql status](./images/webserver-mysql-status.jpg)
+
+2. Verify if you can successfully execute SHOW DATABASES; command and see a list of existing databases.
+
+`show databases;`
+
+![webserver dbcommand status](./images/webserver-dbcommand-status.jpg)
+
+`exit`
+
+3. Change permissions and configuration so Apache could use WordPress:
+
+`sudo chown -R apache:apache /var/www/html/wordpress`
+
+`sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R`
+
+`sudo setsebool -P httpd_can_network_connect=1`
+
+`sudo vi wp-config.php`
+
+![edit apache](./images/edit-apache.jpg)
+
+`sudo systemctl restart httpd`
+
+4. Enable TCP port 80 in Inbound Rules configuration for your Web Server EC2 (enable from everywhere 0.0.0.0/0 or from your workstation’s IP)
+
+![webserver security policy status](./images/webserver-port80-security-policy.jpg)
+
+5. Try to access from your browser the link to your WordPress
+
+[wordpress site](http://13.51.172.159/wordpress/)
+
+
+![wordpress site](./images/wordpress-site.jpg)
+
+*Fill out your DB credentials:*
+
+![wordpress db status](./images/wordpress-db-status.jpg)
 
 
 
