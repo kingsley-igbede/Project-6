@@ -377,7 +377,7 @@
 
 `sudo rm -rf latest.tar.gz`
 
-`cp wordpress/wp-config-sample.php wordpress/wp-config.php`
+`sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php`
 
 `ls -l`
 
@@ -387,7 +387,7 @@
 
 ![Wordpress Folder Content](./images/wordpress-content.jpg)
 
-`cp -R wordpress/. /var/www/html/`
+`sudo cp -R wordpress/. /var/www/html/`
 
 ![html status](./images/html-status.jpg)
 
